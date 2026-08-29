@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # SPDX-License-Identifier: MIT
-# Run the paint app on desktop (Xvfb) before building an APK.
+# Run the template app on desktop (Xvfb) before building an APK.
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 APP="$ROOT/p4a_app"
@@ -22,12 +22,16 @@ fi
 
 cd "$APP"
 
-echo "== boot.py → main.py (launcher import; short smoke) =="
-# boot.py parks forever on android only; on desktop it returns after main.
-xvfb-run -a "$PYTHON" -c "import boot" &
-PID=$!
-sleep 2
-kill "$PID" 2>/dev/null || true
-wait "$PID" 2>/dev/null || true
+echo "== main.py: draw_demo() smoke (no event loop) =="
+# Import main.py and call draw_demo() directly -- main()'s SDL event loop only
+# returns on SDL_QUIT/SDL_APP_TERMINATING, which nothing sends headlessly.
+# xvfb-run supplies a virtual X display; use --auto-servernum -a if Xvfb is
+# unavailable, this script still runs against a dummy SDL video driver.
+if command -v xvfb-run >/dev/null 2>&1; then
+  xvfb-run -a "$PYTHON" -c "import main; main.draw_demo(); print('smoke ok')"
+else
+  echo "xvfb-run not found; falling back to SDL_VIDEODRIVER=dummy"
+  SDL_VIDEODRIVER=dummy "$PYTHON" -c "import main; main.draw_demo(); print('smoke ok')"
+fi
 
-echo "Desktop smoke exited cleanly (or was stopped after the smoke window)"
+echo "Desktop smoke exited cleanly"

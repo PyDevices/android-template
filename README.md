@@ -18,6 +18,8 @@ On Android, PyDevices applications run under **CPython** in a **python-for-andro
 
 Full prerequisites, icon/presplash, emulator/phone setup, and `sdkmanager` notes: **[docs/building.md](docs/building.md)**.
 
+> **Ownership:** `build_android.sh`'s core, `p4a_recipes/`, and `scripts/` are owned by [android-runner](https://github.com/PyDevices/android-runner) and hand-synced here — edit them there, then sync to this template. As of this writing `p4a_recipes/` and `scripts/` are byte-identical between the two repos.
+
 ## App Layout
 
 | File / Folder | Role |

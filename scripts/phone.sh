@@ -10,14 +10,14 @@
 #   ANDROID_HOME          Android SDK (default: ~/.buildozer/android/platform/android-sdk)
 #   ADB                   Override adb executable (auto-detected on WSL vs Linux)
 #   ANDROID_SERIAL        Target a specific phone when multiple are connected
-#   PACKAGE_ID            App id (default: org.pydevices.launcher)
+#   PACKAGE_ID            App id (default: org.pydevices.runner)
 #   ACTIVITY              Main activity (default: org.kivy.android.PythonActivity)
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 APP="$ROOT/p4a_app"
 
-PACKAGE_ID="${PACKAGE_ID:-org.pydevices.launcher}"
+PACKAGE_ID="${PACKAGE_ID:-org.pydevices.runner}"
 ACTIVITY="${ACTIVITY:-org.kivy.android.PythonActivity}"
 COMPONENT="${PACKAGE_ID}/${ACTIVITY}"
 
@@ -163,15 +163,14 @@ find_apk() {
   fi
 
   local -a candidates=()
-  local dir apk
-  for dir in "$APP/bin"; do
-    [[ -d "$dir" ]] || continue
+  local dir="$APP/bin" apk
+  if [[ -d "$dir" ]]; then
     shopt -s nullglob
     for apk in "$dir"/*.apk; do
       candidates+=("$apk")
     done
     shopt -u nullglob
-  done
+  fi
 
   if [[ ${#candidates[@]} -eq 0 ]]; then
     echo "No APK found. Build one first:" >&2

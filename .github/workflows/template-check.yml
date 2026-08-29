@@ -1,0 +1,48 @@
+name: Template check
+
+# Lint-and-verify only. This does NOT build an APK -- that requires the full
+# Android SDK/NDK/buildozer toolchain (see android-runner's release_apk.yml
+# for what that costs) which is too heavy for a check that runs on every
+# push/PR to this template. This workflow only checks the things that don't
+# need that toolchain: script syntax, buildozer.spec parses, and every
+# p4a_recipes pin actually resolves on TestPyPI (the check that would have
+# caught the pydevices==0.0.17 / pydevices-palettes==0.0.8 pin rot).
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+
+      - name: Install shellcheck
+        run: sudo apt-get update && sudo apt-get install -y shellcheck
+
+      - name: Shellcheck scripts
+        run: shellcheck build_android.sh scripts/*.sh
+
+      - name: Validate buildozer.spec parses
+        run: |
+          python3 -c "
+          import configparser
+          c = configparser.ConfigParser()
+          read = c.read('p4a_app/buildozer.spec')
+          assert read, 'buildozer.spec did not parse'
+          assert 'app' in c.sections(), 'missing [app] section'
+          for key in ('title', 'package.name', 'package.domain', 'version'):
+              assert c.get('app', key), f'missing app.{key}'
+          print('buildozer.spec OK:', dict(c['app']).get('package.name'))
+          "
+
+      - name: Verify p4a_recipes pins resolve on TestPyPI
+        run: python3 scripts/check_recipe_pins.py
