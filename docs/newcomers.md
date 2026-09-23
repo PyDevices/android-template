@@ -59,7 +59,7 @@ Run the normal build path with:
 
 ```bash
 ./build_android.sh -y
-./scripts/emulator.sh
+PACKAGE_ID=org.pydevices.myapp ./scripts/emulator.sh
 ```
 
 The resulting debug APK is placed under `p4a_app/bin/`. The detailed
@@ -87,7 +87,8 @@ turn it into the normal build path or commit those generated shadows.
 `build_android.sh`, `p4a_recipes/`, and `scripts/` are shared machinery owned
 by [android-runner](https://github.com/PyDevices/android-runner) and manually
 synced here. Change their canonical implementation there, then synchronize it
-to this template. In contrast, `p4a_app/` is this template's product surface.
+to this template. The exception is `scripts/check_recipe_pins.py`, which
+exists only here. In contrast, `p4a_app/` is this template's product surface.
 
 The script deliberately preserves Buildozer caches for incremental builds and
 refuses clean/distclean operations unless `ALLOW_CLEAN=1` explicitly confirms
@@ -105,7 +106,7 @@ that a cold rebuild is wanted.
 
 When adding a new PyDevices runtime dependency, add or update its recipe and
 the `requirements` entry together, then run
-`python scripts/check_recipe_pins.py` to confirm any pinned TestPyPI release
+`python3 scripts/check_recipe_pins.py` to confirm any pinned TestPyPI release
 still exists. For platform prerequisites and behavior that is intentionally
 shared with android-runner, read [the build guide](building.md) rather than
 duplicating its scripts locally.
