@@ -59,7 +59,7 @@ Run the normal build path with:
 
 ```bash
 ./build_android.sh -y
-PACKAGE_ID=org.pydevices.myapp ./scripts/emulator.sh
+./scripts/emulator.sh
 ```
 
 The resulting debug APK is placed under `p4a_app/bin/`. The detailed
