@@ -5,6 +5,9 @@ Android APK starter template for the [PyDevices](https://github.com/PyDevices/py
 > **Testing without building an APK:**
 > If you just want to run scripts or test applications on an Android device or emulator from the terminal, use **`pydevices/bin/android.py`** with `adb`. You do not need to build your own APK.
 
+New here? Start with the [newcomer's guide](docs/newcomers.md) for the app
+surface, APK assembly path, and shared-tooling boundaries.
+
 ## Architecture
 
 On Android, PyDevices applications run under **CPython** in a **python-for-android** APK using the **SDL2 bootstrap** (no Kivy). Runtime packages install from **[TestPyPI](https://test.pypi.org/)** as CPython wheels. Pure-Python `usdl2` and the MCU-shaped `board_config` come from **pydevices-desktop**; p4a’s `sdl2` recipe supplies `libSDL2.so`.
