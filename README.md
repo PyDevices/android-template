@@ -3,7 +3,7 @@
 Android APK starter template for the [PyDevices](https://github.com/PyDevices/pydevices) product stack: **python-for-android** recipes and a **Buildozer** app (`p4a_app/`) you can clone and customize with your own code.
 
 > **Testing without building an APK:**
-> If you just want to run scripts or test applications on an Android device or emulator from the terminal, use **`pydevices/bin/android.py`** with `adb`. You do not need to build your own APK.
+> If you just want to run scripts or test applications on an Android device or emulator from the terminal, use **`android.py`** with `adb`: it's a single file you download, and it installs a prebuilt Runner for you ([how](https://github.com/PyDevices/pydevices/blob/main/docs/android.md#staging-a-script-with-androidpy)). You do not need to build your own APK.
 
 New here? Start with the [newcomer's guide](docs/newcomers.md) for the app
 surface, APK assembly path, and shared-tooling boundaries.
