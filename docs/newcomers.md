@@ -6,8 +6,8 @@ and the SDL2 bootstrap—there is no Kivy application layer and no separate
 runner or REPL sidecar.
 
 Use it when you want an APK with your own app code. If you only need to run a
-script on a connected device or emulator, use `pydevices/bin/android.py`
-instead; that does not require creating an APK.
+script on a connected device or emulator, download `android.py` and use it
+instead ([how](https://github.com/PyDevices/pydevices/blob/main/docs/android.md#staging-a-script-with-androidpy)); that does not require creating an APK.
 
 ## Start with the app, not the build system
 
