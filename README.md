@@ -40,3 +40,5 @@ Full prerequisites, icon/presplash, emulator/phone setup, and `sdkmanager` notes
 2. Edit **`p4a_app/buildozer.spec`** to customize `title`, `package.name`, and `package.domain`.
 3. Replace **`p4a_app/icon.png`** with your app's icon.
 4. Run `./build_android.sh` to generate your `.apk`.
+
+What's planned next is in [ROADMAP.md](ROADMAP.md).
