@@ -235,6 +235,7 @@ clear_android_local_module_shadows() {
     local path
     for path in \
         "$APP_DIR/displaydev" \
+        "$APP_DIR/boarddev.py" \
         "$APP_DIR/usdl2.py" \
         "$APP_DIR/audiodev" \
         "$APP_DIR/androidaudio_session.py" \
@@ -269,10 +270,14 @@ sync_android_audio_modules() {
 }
 
 sync_android_display_modules() {
-    # Debug only: shadow TestPyPI displaydev / usdl2 (pydevices-desktop).
+    # Debug only: shadow TestPyPI displaydev / boarddev / usdl2 (pydevices-desktop).
     local hw="${PYDEVICES_PRODUCT_ROOT:-$SCRIPT_DIR/../pydevices}"
     local disp_src="$hw/lib/displaydev"
-    local usdl2_src="$hw/drivers/usdl2.py"
+    local usdl2_src="$hw/utils/usdl2.py"
+    # displaydev reads its PYDEVICES_* settings through boarddev's env
+    # helpers, so a local displaydev needs the local boarddev beside it: an
+    # older TestPyPI boarddev has no env_int.
+    local boarddev_src="$hw/lib/boarddev.py"
     if [[ -d "$disp_src" ]]; then
         echo "==> Syncing displaydev from $disp_src -> $APP_DIR/displaydev"
         mkdir -p "$APP_DIR/displaydev"
@@ -286,6 +291,13 @@ sync_android_display_modules() {
     else
         echo "==> Skipping displaydev sync (missing $disp_src)" >&2
     fi
+    if [[ -f "$boarddev_src" ]]; then
+        echo "==> Syncing boarddev from $boarddev_src -> $APP_DIR"
+        cp -f "$boarddev_src" "$APP_DIR/boarddev.py"
+        require_file "$APP_DIR/boarddev.py" "synced boarddev.py"
+    else
+        echo "==> Skipping boarddev sync (missing $boarddev_src)" >&2
+    fi
     if [[ -f "$usdl2_src" ]]; then
         echo "==> Syncing usdl2 from $usdl2_src -> $APP_DIR"
         cp -f "$usdl2_src" "$APP_DIR/usdl2.py"
@@ -298,7 +310,7 @@ sync_android_display_modules() {
 maybe_sync_android_local_modules() {
     case "${ANDROID_DEBUG_LOCAL_MODULES}" in
         1|true|TRUE|yes|YES)
-            echo "==> ANDROID_DEBUG_LOCAL_MODULES=1: syncing local displaydev/usdl2/audio"
+            echo "==> ANDROID_DEBUG_LOCAL_MODULES=1: syncing local displaydev/boarddev/usdl2/audio"
             sync_android_audio_modules
             sync_android_display_modules
             ;;
