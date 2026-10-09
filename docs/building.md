@@ -22,6 +22,16 @@ The `displaydev` module ships inside the **pydevices** distribution itself (ther
 
 `build_android.sh`'s core, `p4a_recipes/`, and `scripts/` are maintained in **android-runner** and synced into this repo by hand; edit them there, then copy the changes here. As of this writing the two trees are byte-identical for `p4a_recipes/` and `scripts/` (the runner additionally carries `scripts/android_stdio_attach.py` and `scripts/patch_p4a_boot_entrypoint.py`, which this template does not need).
 
+### Building from a second checkout
+
+Build from a checkout whose path has no directory starting with `.`. buildozer leaves out every source file under such a directory, so a git worktree in `.worktrees/<name>` would package an APK with no app in it; `build_android.sh` refuses to start there.
+
+Copying `p4a_app/.buildozer` from another checkout saves the full recipe build, but p4a records that checkout's absolute `hostpython` path in the dist's `dist_info.json`, and packaging then fails in `make_tar` with `TypeError: expected str, bytes or os.PathLike object, not NoneType`. Point the path at the new checkout and the build goes through:
+
+```bash
+sed -i "s#<old checkout>#<new checkout>#g" p4a_app/.buildozer/android/platform/build-arm64-v8a/dists/<dist>/dist_info.json
+```
+
 ## Icon and presplash
 
 `buildozer.spec` points both at the same asset:
