@@ -396,8 +396,16 @@ else
 fi
 
 cd "$APP_DIR"
+# p4a keeps older installed package versions and reuses an existing dist whose
+# bundle was built from them; drop whatever no longer matches the recipe pins
+# (not the compiled python3/sdl2 caches) so the APK carries only this build.
+if [[ -d "$APP_DIR/.buildozer/android/platform" ]]; then
+    "$PYTHON" "$SCRIPT_DIR/scripts/stale_dist.py" prune "$APP_DIR/.buildozer/android/platform"
+fi
+BUILD_START_MARK=$(mktemp "${TMPDIR:-/tmp}/android-template-build.XXXXXX")
+trap 'rm -f "$BUILD_START_MARK"' EXIT
 # Always "android debug" — never "android clean". Extra args are flags only.
 "$BUILDOZER" android debug "${BUILDOZER_ARGS[@]}"
 
-echo "==> APK output:"
-ls -1 "$APP_DIR"/bin/*.apk
+echo "==> APK output (this build only; older APKs stay in $APP_DIR/bin):"
+find "$APP_DIR/bin" -name '*.apk' -newer "$BUILD_START_MARK" | sort
