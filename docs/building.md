@@ -34,14 +34,9 @@ sed -i "s#<old checkout>#<new checkout>#g" p4a_app/.buildozer/android/platform/b
 
 ### After you change a recipe's pin
 
-An incremental build doesn't pick up a new `version` in `p4a_recipes/`. p4a matches the existing dist by its recipe names alone, so it repackages the packages it installed last time. Remove the dist and the old version's dist-info (here, moving pydevices-lvgl off 9.5.49), then build again:
+Just build again. p4a matches an existing dist by its recipe names alone and keeps older installed versions beside newer ones, so on its own it would repackage whatever it installed last time. `build_android.sh` drops any cached package (and the dist built from it) whose version isn't the pin in `p4a_recipes/`, and the p4a hook (`scripts/p4a_hook.py`, wired in by `p4a.hook` in `buildozer.spec`) fails the build if the dist still differs from the pins. Every Python recipe that moved reinstalls; the compiled ones (CPython, SDL2) are reused. `scripts/stale_dist.py` holds the logic if you want to run `prune` or `check` by hand.
 
-```bash
-B=p4a_app/.buildozer/android/platform/build-arm64-v8a_x86_64
-rm -rf $B/dists/<dist> $B/build/python-installs/<dist>/*/pydevices_lvgl-9.5.49.dist-info
-```
-
-Every Python recipe reinstalls; the compiled ones (CPython, SDL2) are reused. To see what an APK carries, list the dist-info folders in its bundle:
+To see what an APK carries, list the dist-info folders in its bundle:
 
 ```bash
 unzip -p p4a_app/bin/<apk> lib/arm64-v8a/libpybundle.so | tar -tz | grep 'dist-info/$'

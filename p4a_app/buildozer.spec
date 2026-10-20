@@ -46,6 +46,9 @@ p4a.extra_args = --extra-index-url https://test.pypi.org/simple/ --extra-index-u
 
 # Thin PyProjectRecipe wrappers that install matching TestPyPI / PyPI wheels.
 p4a.local_recipes = ../p4a_recipes
+# Refuses a dist whose Python packages differ from the recipe pins
+# (see scripts/p4a_hook.py).
+p4a.hook = ../scripts/p4a_hook.py
 
 [buildozer]
 log_level = 2
