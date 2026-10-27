@@ -38,4 +38,4 @@ the docs.
 
 [Docs](https://github.com/PyDevices/android-template/blob/main/docs/index.md) · [Examples](https://pydevices.github.io/pydevices-examples/gallery/) · [Roadmap](ROADMAP.md)
 
-OmniPython is made by [PyDevices](https://pydevices.com).
+Made by [PyDevices](https://pydevices.com).
