@@ -1,7 +1,7 @@
 # android-template
 
 android-template is a starter for your own Android app made with the PyDevices
-display stack: your Python in `p4a_app/main.py`, built into an APK with
+display stack: your Python in [`p4a_app/main.py`](p4a_app/main.py), built into an APK with
 [python-for-android](https://python-for-android.readthedocs.io/) and
 [Buildozer](https://buildozer.readthedocs.io/).
 
