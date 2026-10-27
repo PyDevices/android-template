@@ -3,7 +3,7 @@
 You need a copy of the template, then the app in `p4a_app/main.py` and the
 settings in `p4a_app/buildozer.spec`. If you only want to run a script on a
 phone or emulator, you don't need this repository: download `android.py` and
-follow [its guide](https://github.com/PyDevices/pydevices/blob/main/docs/android.md#staging-a-script-with-androidpy).
+follow [its guide](https://github.com/PyDevices/pydevices/blob/main/docs/guides/run-on-android.md#staging-a-script-with-androidpy).
 
 ## Use the template
 

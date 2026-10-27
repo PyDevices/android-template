@@ -7,7 +7,7 @@ display stack: your Python in `p4a_app/main.py`, built into an APK with
 
 If you only want to run a script on a phone or emulator, you don't need an APK
 of your own: use `android.py`, which installs a prebuilt Runner
-([how](https://github.com/PyDevices/pydevices/blob/main/docs/android.md#staging-a-script-with-androidpy)).
+([how](https://github.com/PyDevices/pydevices/blob/main/docs/guides/run-on-android.md#staging-a-script-with-androidpy)).
 
 On GitHub, press **Use this template**, or clone it, then draw the demo on your
 desktop before you build anything for Android:
@@ -38,4 +38,4 @@ the docs.
 
 [Docs](https://github.com/PyDevices/android-template/blob/main/docs/index.md) · [Examples](https://pydevices.github.io/pydevices-examples/gallery/) · [Roadmap](ROADMAP.md)
 
-Made by [PyDevices](https://pydevices.com).
+OmniPython is made by [PyDevices](https://pydevices.com).

@@ -7,7 +7,7 @@ runner or REPL sidecar.
 
 Use it when you want an APK with your own app code. [Make your first app](../get-started/index.md) walks through it. If you only need to run a
 script on a connected device or emulator, download `android.py` and use it
-instead ([how](https://github.com/PyDevices/pydevices/blob/main/docs/android.md#staging-a-script-with-androidpy)); that does not require creating an APK.
+instead ([how](https://github.com/PyDevices/pydevices/blob/main/docs/guides/run-on-android.md#staging-a-script-with-androidpy)); that does not require creating an APK.
 
 ## How an APK is assembled
 
