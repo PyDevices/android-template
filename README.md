@@ -1,44 +1,41 @@
 # android-template
 
-Android APK starter template for the [PyDevices](https://github.com/PyDevices/pydevices) product stack: **python-for-android** recipes and a **Buildozer** app (`p4a_app/`) you can clone and customize with your own code.
+android-template is a starter for your own Android app made with the PyDevices
+display stack: your Python in `p4a_app/main.py`, built into an APK with
+[python-for-android](https://python-for-android.readthedocs.io/) and
+[Buildozer](https://buildozer.readthedocs.io/).
 
-> **Testing without building an APK:**
-> If you just want to run scripts or test applications on an Android device or emulator from the terminal, use **`android.py`** with `adb`: it's a single file you download, and it installs a prebuilt Runner for you ([how](https://github.com/PyDevices/pydevices/blob/main/docs/android.md#staging-a-script-with-androidpy)). You do not need to build your own APK.
+If you only want to run a script on a phone or emulator, you don't need an APK
+of your own: use `android.py`, which installs a prebuilt Runner
+([how](https://github.com/PyDevices/pydevices/blob/main/docs/guides/run-on-android.md#staging-a-script-with-androidpy)).
 
-New here? Start with the [newcomer's guide](docs/newcomers.md) for the app
-surface, APK assembly path, and shared-tooling boundaries.
+On GitHub, press **Use this template**, or clone it, then draw the demo on your
+desktop before you build anything for Android:
 
-## Architecture
+```bash
+git clone https://github.com/PyDevices/android-template my-app
+cd my-app
+./scripts/test_desktop.sh
+```
 
-On Android, PyDevices applications run under **CPython** in a **python-for-android** APK using the **SDL2 bootstrap** (no Kivy). Runtime packages install from **[TestPyPI](https://test.pypi.org/)** as CPython wheels. Pure-Python `usdl2` and the MCU-shaped `board_config` come from **pydevices-desktop**; p4a’s `sdl2` recipe supplies `libSDL2.so`.
+```text
+== main.py: draw_demo() smoke (no event loop) ==
+SDLDisplay: initialized.
+smoke ok
+Desktop smoke exited cleanly
+```
 
-## 🚀 Build Your Own APK
+That makes a virtual environment, installs the PyDevices desktop packages from
+TestPyPI and draws `main.py`'s four colour bands once under Xvfb. The APK is one
+more command, which needs the Android SDK, NDK and a JDK:
 
 ```bash
 ./build_android.sh -y
-./scripts/emulator.sh
 ```
 
-Full prerequisites, icon/presplash, emulator/phone setup, and `sdkmanager` notes: **[docs/building.md](docs/building.md)**.
+Prerequisites, installing on an emulator or phone, and what to change are in
+the docs.
 
-> **Ownership:** `build_android.sh`'s core, `p4a_recipes/`, and `scripts/` are owned by [android-runner](https://github.com/PyDevices/android-runner) and hand-synced here — edit them there, then sync to this template. As of this writing `p4a_recipes/` and `scripts/` are byte-identical between the two repos.
+[Docs](https://github.com/PyDevices/android-template/blob/main/docs/index.md) · [Examples](https://pydevices.github.io/pydevices-examples/gallery/) · [Roadmap](ROADMAP.md)
 
-## App Layout
-
-| File / Folder | Role |
-|---------------|------|
-| `p4a_app/main.py` | Your Python application entrypoint |
-| `p4a_app/buildozer.spec` | Buildozer configuration (app title, package ID, icon, permissions) |
-| `p4a_app/icon.png` | App launcher icon + presplash screen |
-| `p4a_recipes/` | TestPyPI / PyPI `PyProjectRecipe` build recipes |
-| `build_android.sh` | Build the debug APK |
-| `scripts/` | Host emulator/device launcher helpers |
-
-## Customizing Your App
-
-1. Modify **`p4a_app/main.py`** with your PyDevices logic and UI code.
-2. Edit **`p4a_app/buildozer.spec`** to customize `title`, `package.name`, and `package.domain`.
-3. Replace **`p4a_app/icon.png`** with your app's icon.
-4. Run `./build_android.sh` to generate your `.apk`.
-
-What's planned next is in [ROADMAP.md](ROADMAP.md).
+Made by [PyDevices](https://pydevices.com).
