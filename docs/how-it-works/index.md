@@ -40,9 +40,9 @@ The resulting debug APK is placed under `p4a_app/bin/`. [Build an APK](../guides
 ## What is and isn't in the APK
 
 
-This template has no `boot.py` / stdio sidecar / attach REPL — that machinery belongs to the separate [android-runner](https://github.com/PyDevices/android-runner) repo, which builds a generic debuggable host APK (`org.pydevices.runner`) that `pydevices/bin/android.py` stages scripts onto. Here, `p4a_app/main.py` is p4a's normal SDL2 bootstrap entrypoint and needs no patching of `getEntryPoint`.
+This template has no `boot.py` / stdio sidecar / attach REPL — that machinery belongs to the separate [android-runner](https://github.com/PyDevices/android-runner) repo, which builds a generic debuggable host APK (`org.pydevices.runner`) that `pydevices/bin/android.py` stages scripts onto. Here, [`p4a_app/main.py`](../../p4a_app/main.py) is p4a's normal SDL2 bootstrap entrypoint and needs no patching of `getEntryPoint`.
 
-The `displaydev` module ships inside the **pydevices** distribution itself (there is no separate `pydevices-displaydev` package on TestPyPI); `p4a_recipes/pydevices/` pulls it in as part of `pydevices`.
+The `displaydev` module ships inside the **pydevices** distribution itself (there is no separate `pydevices-displaydev` package on TestPyPI); [`p4a_recipes/pydevices/`](../../p4a_recipes/pydevices/) pulls it in as part of `pydevices`.
 
 ## Important boundaries
 

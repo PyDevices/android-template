@@ -1,7 +1,7 @@
 # Make your first app
 
-You need a copy of the template, then the app in `p4a_app/main.py` and the
-settings in `p4a_app/buildozer.spec`. If you only want to run a script on a
+You need a copy of the template, then the app in [`p4a_app/main.py`](../../p4a_app/main.py) and the
+settings in [`p4a_app/buildozer.spec`](../../p4a_app/buildozer.spec). If you only want to run a script on a
 phone or emulator, you don't need this repository: download `android.py` and
 follow [its guide](https://github.com/PyDevices/pydevices/blob/main/docs/guides/run-on-android.md#staging-a-script-with-androidpy).
 
@@ -34,7 +34,7 @@ It needs `xvfb-run` (the `xvfb` package on Ubuntu).
 2. Set `title`, `package.name` and `package.domain` in `p4a_app/buildozer.spec`.
    The template's id is `org.pydevices.myapp`; make yours unique before you
    give the APK to anyone.
-3. Replace `p4a_app/icon.png`. [Change the icon](../guides/change-the-icon.md)
+3. Replace [`p4a_app/icon.png`](../../p4a_app/icon.png). [Change the icon](../guides/change-the-icon.md)
    has the size.
 4. Build and install it: [Build an APK](../guides/build-an-apk.md), then
    [Run it on an emulator or a phone](../guides/run-on-a-device.md).
