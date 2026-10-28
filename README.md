@@ -36,6 +36,6 @@ more command, which needs the Android SDK, NDK and a JDK:
 Prerequisites, installing on an emulator or phone, and what to change are in
 the docs.
 
-[Docs](https://github.com/PyDevices/android-template/blob/main/docs/index.md) · [Examples](https://pydevices.github.io/pydevices-examples/gallery/) · [Roadmap](ROADMAP.md)
+[Docs](https://github.com/PyDevices/android-template/blob/main/docs/index.md) · [Examples](https://pydevices.github.io/gallery/gallery/) · [Roadmap](ROADMAP.md)
 
 Made by [PyDevices](https://pydevices.com).
