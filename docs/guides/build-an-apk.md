@@ -12,7 +12,7 @@ A practical workflow is to iterate on the app logic first, then only change the 
 ./scripts/emulator.sh
 ```
 
-`build_android.sh` creates `.venv/` and installs host deps from `requirements-dev.txt`. It rsyncs sibling `pydevices-examples/lib/utils/` into [`p4a_app/utils/`](../../p4a_app/utils/), then overlays canonical `pydevices/utils/mip.py`. Override the sources with `PYDEVICES_EXAMPLES_UTILS` and `PYDEVICES_PRODUCT_ROOT`. Runtime distributions (**pydevices-desktop**, **pydevices-pygraphics**, …) come from TestPyPI via `p4a_recipes/`. For local iteration only, pass `--local-modules` (or `ANDROID_DEBUG_LOCAL_MODULES=1`) to shadow the `displaydev/`, `boarddev.py`, `usdl2.py`, and `audiodev/` imports from sibling checkouts into `p4a_app/`; default builds remove those shadows. Package id: **`org.pydevices.myapp`**. App label comes from `title` in `p4a_app/buildozer.spec` (`PyDevices App` by default).
+`build_android.sh` creates `.venv/` and installs host deps from `requirements-dev.txt`. It rsyncs sibling `gallery/lib/utils/` into [`p4a_app/utils/`](../../p4a_app/utils/), then overlays canonical `pydevices/utils/mip.py`. Override the sources with `PYDEVICES_EXAMPLES_UTILS` and `PYDEVICES_PRODUCT_ROOT`. Runtime distributions (**pydevices-desktop**, **pydevices-pygraphics**, …) come from TestPyPI via `p4a_recipes/`. For local iteration only, pass `--local-modules` (or `ANDROID_DEBUG_LOCAL_MODULES=1`) to shadow the `displaydev/`, `boarddev.py`, `usdl2.py`, and `audiodev/` imports from sibling checkouts into `p4a_app/`; default builds remove those shadows. Package id: **`org.pydevices.myapp`**. App label comes from `title` in `p4a_app/buildozer.spec` (`PyDevices App` by default).
 
 ## Building from a second checkout
 
