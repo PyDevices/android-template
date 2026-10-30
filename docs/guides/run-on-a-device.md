@@ -18,7 +18,7 @@ USB debugging is hidden until Developer options are unlocked, and Samsung **Auto
    - **Settings → Security and privacy → Auto Blocker** → turn the **main switch off** (PIN/fingerprint if asked).
 3. **Settings → Developer options** → enable **USB debugging** → OK.
 4. Plug in a data USB cable; accept **Allow USB debugging?** on the phone.
-5. Confirm from WSL: `adb.exe devices` shows a non-`emulator-*` line as `device`, then run `./scripts/phone.sh`.
+5. Confirm from WSL: `adb.exe devices` shows a non-`emulator-*` line as `device`, then run [`./scripts/phone.sh`](../../scripts/phone.sh).
 
 You can turn Auto Blocker back on afterward; USB debugging may be blocked again until you disable it.
 

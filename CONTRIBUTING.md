@@ -6,7 +6,7 @@ anything larger than a fix.
 
 ## Where a change goes
 
-`build_android.sh`, `p4a_recipes/` and most of `scripts/` are shared with
+[`build_android.sh`](build_android.sh), [`p4a_recipes/`](p4a_recipes/) and most of [`scripts/`](scripts/) are shared with
 [android-runner](https://github.com/PyDevices/android-runner), which builds the
 generic Runner APK. Change the shared files there first, then copy the change
 here. They are copies, not links, and they are not all identical: `scripts/`

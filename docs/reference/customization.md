@@ -13,8 +13,8 @@ Leave **`p4a_app/`** alone only when you need packaging or host tooling changes:
 
 | Need | Where |
 |------|--------|
-| New / different CPython wheel install from TestPyPI | `p4a_recipes/` (+ list the recipe name in `buildozer.spec` `requirements`) |
-| Build / install / smoke helpers | `build_android.sh`, `scripts/` |
+| New / different CPython wheel install from TestPyPI | [`p4a_recipes/`](../../p4a_recipes/) (+ list the recipe name in `buildozer.spec` `requirements`) |
+| Build / install / smoke helpers | [`build_android.sh`](../../build_android.sh), [`scripts/`](../../scripts/) |
 
 Keep `p4a.local_recipes` pointed at this repo’s `p4a_recipes/` unless you are shipping your own recipe tree.
 
@@ -26,6 +26,6 @@ Keep `p4a.local_recipes` pointed at this repo’s `p4a_recipes/` unless you are 
 | `--title NAME` | Set the launcher title without asking. |
 | `--local-modules`, `ANDROID_DEBUG_LOCAL_MODULES=1` | Shadow the TestPyPI `displaydev`, `boarddev`, `usdl2` and `audiodev` with copies from sibling checkouts. For local debugging only. |
 | `ALLOW_CLEAN=1` | Let a `clean` or `distclean` argument through. Without it the script refuses, so a build keeps its caches. |
-| `VENV_DIR`, `REQUIREMENTS` | The host build virtual environment (default `.venv`) and its requirements file (default `requirements-dev.txt`). |
+| `VENV_DIR`, `REQUIREMENTS` | The host build virtual environment (default `.venv`) and its requirements file (default [`requirements-dev.txt`](../../requirements-dev.txt)). |
 | `ANDROID_HOME`, `ANDROID_NDK_HOME`, `JAVA_HOME` | The SDK, NDK and JDK to build with. Unset values are detected. |
 | `PYDEVICES_EXAMPLES_UTILS`, `PYDEVICES_PRODUCT_ROOT` | Where to sync [`p4a_app/utils/`](../../p4a_app/utils/) from, when sibling checkouts exist. |
