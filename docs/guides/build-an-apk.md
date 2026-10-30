@@ -2,7 +2,7 @@
 
 Prerequisites: [Android SDK + NDK](https://python-for-android.readthedocs.io/en/latest/quickstart.html), Ubuntu/WSL build tools (`git`, `zip`, `openjdk-17-jdk`, `autoconf`, …). Tooling already downloaded by buildozer lives under `~/.buildozer/android/platform/` by default.
 
-A practical workflow is to iterate on the app logic first, then only change the packaging layer when you need a new dependency or a different build setting. In most cases that means editing **[`p4a_app/main.py`](../../p4a_app/main.py)** (app entry — this is the whole app, there is no separate boot/launcher split here) and **[`p4a_app/buildozer.spec`](../../p4a_app/buildozer.spec)** or **`p4a_recipes/`** when the APK’s runtime package list changes. Display wiring comes from TestPyPI **pydevices-desktop** (`board_config` + pure-Python `usdl2`); do not add a local `board_config.py` that shadows it.
+A practical workflow is to iterate on the app logic first, then only change the packaging layer when you need a new dependency or a different build setting. In most cases that means editing **[`p4a_app/main.py`](../../p4a_app/main.py)** (app entry — this is the whole app, there is no separate boot/launcher split here) and **[`p4a_app/buildozer.spec`](../../p4a_app/buildozer.spec)** or **[`p4a_recipes/`](../../p4a_recipes/)** when the APK’s runtime package list changes. Display wiring comes from TestPyPI **pydevices-desktop** (`board_config` + pure-Python `usdl2`); do not add a local `board_config.py` that shadows it.
 
 ```bash
 ./build_android.sh              # prompts for app title (Enter = current)
@@ -12,7 +12,7 @@ A practical workflow is to iterate on the app logic first, then only change the 
 ./scripts/emulator.sh
 ```
 
-`build_android.sh` creates `.venv/` and installs host deps from `requirements-dev.txt`. It rsyncs sibling `gallery/lib/utils/` into [`p4a_app/utils/`](../../p4a_app/utils/), then overlays canonical `pydevices/utils/mip.py`. Override the sources with `PYDEVICES_EXAMPLES_UTILS` and `PYDEVICES_PRODUCT_ROOT`. Runtime distributions (**pydevices-desktop**, **pydevices-pygraphics**, …) come from TestPyPI via `p4a_recipes/`. For local iteration only, pass `--local-modules` (or `ANDROID_DEBUG_LOCAL_MODULES=1`) to shadow the `displaydev/`, `boarddev.py`, `usdl2.py`, and `audiodev/` imports from sibling checkouts into `p4a_app/`; default builds remove those shadows. Package id: **`org.pydevices.myapp`**. App label comes from `title` in `p4a_app/buildozer.spec` (`PyDevices App` by default).
+[`build_android.sh`](../../build_android.sh) creates `.venv/` and installs host deps from [`requirements-dev.txt`](../../requirements-dev.txt). It rsyncs sibling `gallery/lib/utils/` into [`p4a_app/utils/`](../../p4a_app/utils/), then overlays canonical `pydevices/utils/mip.py`. Override the sources with `PYDEVICES_EXAMPLES_UTILS` and `PYDEVICES_PRODUCT_ROOT`. Runtime distributions (**pydevices-desktop**, **pydevices-pygraphics**, …) come from TestPyPI via `p4a_recipes/`. For local iteration only, pass `--local-modules` (or `ANDROID_DEBUG_LOCAL_MODULES=1`) to shadow the `displaydev/`, `boarddev.py`, `usdl2.py`, and `audiodev/` imports from sibling checkouts into `p4a_app/`; default builds remove those shadows. Package id: **`org.pydevices.myapp`**. App label comes from `title` in `p4a_app/buildozer.spec` (`PyDevices App` by default).
 
 ## Building from a second checkout
 

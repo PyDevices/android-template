@@ -28,10 +28,10 @@ p4a_app/main.py + buildozer.spec
                     debug APK
 ```
 
-`build_android.sh` creates a host virtual environment, prepares the Android
+[`build_android.sh`](../../build_android.sh) creates a host virtual environment, prepares the Android
 SDK/NDK configuration, synchronizes the app utility files, and invokes
 Buildozer. The app's `requirements` list names PyDevices packages; the local
-recipes in `p4a_recipes/` tell python-for-android how to install the matching
+recipes in [`p4a_recipes/`](../../p4a_recipes/) tell python-for-android how to install the matching
 wheels. TestPyPI is the primary runtime index and PyPI is a secondary index
 for dependencies unavailable there.
 
