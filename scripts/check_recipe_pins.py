@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2026 Brad Barnett
+#
 # SPDX-License-Identifier: MIT
 """Verify every pinned p4a_recipes/*/__init__.py version resolves on TestPyPI.
 
