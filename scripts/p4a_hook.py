@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2026 Brad Barnett
+#
 # SPDX-License-Identifier: MIT
 """python-for-android hooks (wired in via ``p4a.hook`` in buildozer.spec).
 
