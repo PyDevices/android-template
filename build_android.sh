@@ -35,7 +35,7 @@
 #
 # Runtime deps are installed from TestPyPI via p4a PyProjectRecipe wrappers in p4a_recipes/.
 # Before packaging, syncs sibling gallery/lib/utils → p4a_app/utils and overlays
-# canonical pydevices/utils/mip.py (override with PYDEVICES_EXAMPLES_UTILS and
+# pydevices lib/omip.py (override with PYDEVICES_EXAMPLES_UTILS and
 # PYDEVICES_PRODUCT_ROOT). Excludes spotapi symlink, __pycache__, *.md, *.sh.
 set -euo pipefail
 
@@ -220,31 +220,31 @@ setup_android_env() {
 }
 
 sync_utils_from_examples() {
-    # Bake gallery's app helpers, then overlay the portable product-owned mip.
+    # Bake gallery's app helpers, then overlay the product-owned omip.
     local src="${PYDEVICES_EXAMPLES_UTILS:-$SCRIPT_DIR/../gallery/lib/utils}"
     local hw="${PYDEVICES_PRODUCT_ROOT:-$SCRIPT_DIR/../pydevices}"
     local dst="$APP_DIR/utils"
-    if [[ ! -d "$src" ]]; then
-        echo "==> Skipping utils sync (missing $src); using existing $dst" >&2
-        require_dir "$dst" "p4a_app/utils"
-        require_file "$dst/path.py" "p4a_app/utils/path.py"
-        return 0
-    fi
-    echo "==> Syncing utils from $src -> $dst"
     mkdir -p "$dst"
-    rsync -a --delete \
-        --exclude '__pycache__/' \
-        --exclude 'spotapi' \
-        --exclude '*.md' \
-        --exclude '*.sh' \
-        --delete-excluded \
-        "$src/" "$dst/"
-    require_file "$dst/path.py" "synced utils/path.py"
-    require_file "$dst/tft_config.py" "synced utils/tft_config.py"
-    require_dir "$dst/fonts" "synced utils/fonts"
-    require_file "$hw/utils/mip.py" "pydevices utils/mip.py"
-    rsync -a "$hw/utils/mip.py" "$dst/mip.py"
-    require_file "$dst/mip.py" "synced utils/mip.py"
+    if [[ -d "$src" ]]; then
+        echo "==> Syncing utils from $src -> $dst"
+        rsync -a --delete \
+            --exclude '__pycache__/' \
+            --exclude 'spotapi' \
+            --exclude '*.md' \
+            --exclude '*.sh' \
+            --delete-excluded \
+            "$src/" "$dst/"
+        require_file "$dst/tft_config.py" "synced utils/tft_config.py"
+        require_dir "$dst/fonts" "synced utils/fonts"
+    else
+        echo "==> Skipping the gallery utils sync (missing $src)" >&2
+    fi
+    require_file "$dst/path.py" "p4a_app/utils/path.py"
+    # omip comes from pydevices on every build, gallery or not: an app that
+    # installs packages uses it, and a stale copy can't reach the index.
+    require_file "$hw/lib/omip.py" "pydevices lib/omip.py"
+    rsync -a "$hw/lib/omip.py" "$dst/omip.py"
+    require_file "$dst/omip.py" "synced utils/omip.py"
 }
 
 clear_android_local_module_shadows() {
