@@ -1,13 +1,13 @@
 # android-template
 
-android-template is a starter for your own Android app made with the PyDevices
+android-template is a starter for your own Android app made with the OmniPython
 display stack: your Python in [`p4a_app/main.py`](p4a_app/main.py), built into an APK with
 [python-for-android](https://python-for-android.readthedocs.io/) and
 [Buildozer](https://buildozer.readthedocs.io/).
 
 If you only want to run a script on a phone or emulator, you don't need an APK
 of your own: use `android.py`, which installs a prebuilt Runner
-([how](https://github.com/PyDevices/pydevices/blob/main/docs/guides/run-on-android.md#staging-a-script-with-androidpy)).
+([how](https://github.com/PyDevices/omnipython/blob/main/docs/guides/run-on-android.md#staging-a-script-with-androidpy)).
 
 On GitHub, press **Use this template**, or clone it, then draw the demo on your
 desktop before you build anything for Android:
@@ -25,7 +25,7 @@ smoke ok
 Desktop smoke exited cleanly
 ```
 
-That makes a virtual environment, installs the PyDevices desktop packages from
+That makes a virtual environment, installs the OmniPython desktop packages from
 TestPyPI and draws `main.py`'s four colour bands once under Xvfb. The APK is one
 more command, which needs the Android SDK, NDK and a JDK:
 

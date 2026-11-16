@@ -6,7 +6,7 @@ name: Template check
 # push/PR to this template. This workflow only checks the things that don't
 # need that toolchain: script syntax, buildozer.spec parses, and every
 # p4a_recipes pin actually resolves on TestPyPI (the check that would have
-# caught the pydevices==0.0.17 / pydevices-palettes==0.0.8 pin rot).
+# caught the pydevices==0.0.17 / omnipython-palettes==0.0.8 pin rot).
 
 # Documentation-only changes can't change this result, so they don't run it.
 on:
