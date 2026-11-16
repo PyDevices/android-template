@@ -10,9 +10,9 @@ icon.filename = %(source.dir)s/icon.png
 presplash.filename = %(source.dir)s/icon.png
 version = 0.1.0
 # Standalone LVGL launcher + baked TestPyPI stack. Native: pygraphics /
-# pydevices-lvgl Android wheels. pydevices-desktop ships usdl2 + board_config;
+# omnipython-lvgl Android wheels. omnipython-desktop ships usdl2 + board_config;
 # p4a sdl2 bootstrap provides libSDL2.so.
-requirements = python3,sdl2,setuptools,pip,pyjnius,pydevices,omnipython-audiodsp,omnipython-audioinstruments,omnipython-audioeffects,pydevices-pygraphics,pydevices-palettes,pydevices-pdwidgets,pydevices-desktop,pydeviceslvgl
+requirements = python3,sdl2,setuptools,pip,pyjnius,omnipython,omnipython-audiodsp,omnipython-audioinstruments,omnipython-audioeffects,omnipython-pygraphics,omnipython-palettes,omnipython-pdwidgets,omnipython-desktop,omnipythonlvgl
 # Both aspects allowed in the manifest; AndroidSDLDisplay then locks to fixed
 # LANDSCAPE or PORTRAIT from logical size (tilt does nothing).
 orientation = portrait,landscape
@@ -40,7 +40,7 @@ android.manifest.intent_filters = %(source.dir)s/intent_filters_tv.xml
 # (android.features alone forces required=true).
 android.extra_manifest_xml = %(source.dir)s/tv_features.xml
 
-# PyDevices wheels on TestPyPI (unpinned recipes install latest matching wheel).
+# OmniPython wheels on TestPyPI (unpinned recipes install latest matching wheel).
 # TestPyPI primary; PyPI secondary for deps that exist only on production PyPI.
 p4a.extra_args = --extra-index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/
 

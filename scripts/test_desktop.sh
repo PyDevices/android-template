@@ -18,7 +18,7 @@ fi
 
 "$PIP" install -q \
   -i "$TESTPYPI" --extra-index-url "$PYPI" \
-  pydevices-desktop pydevices-pygraphics
+  omnipython-desktop omnipython-pygraphics
 
 cd "$APP"
 

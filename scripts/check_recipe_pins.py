@@ -5,7 +5,7 @@
 """Verify every pinned p4a_recipes/*/__init__.py version resolves on TestPyPI.
 
 This is the check that would have caught the pydevices==0.0.17 /
-pydevices-palettes==0.0.8 pin rot: both were repo-local floors that had
+omnipython-palettes==0.0.8 pin rot: both were repo-local floors that had
 drifted behind (or, for 0.0.17, never matched) any version TestPyPI ever
 published. Recipes with ``version = None`` (unpinned, resolved at build
 time) are skipped -- there is nothing to verify.

@@ -7,7 +7,7 @@ runner or REPL sidecar.
 
 Use it when you want an APK with your own app code. [Make your first app](../get-started/index.md) walks through it. If you only need to run a
 script on a connected device or emulator, download `android.py` and use it
-instead ([how](https://github.com/PyDevices/pydevices/blob/main/docs/guides/run-on-android.md#staging-a-script-with-androidpy)); that does not require creating an APK.
+instead ([how](https://github.com/PyDevices/omnipython/blob/main/docs/guides/run-on-android.md#staging-a-script-with-androidpy)); that does not require creating an APK.
 
 ## How an APK is assembled
 
@@ -21,7 +21,7 @@ p4a_app/main.py + buildozer.spec
  Buildozer / python-for-android
              |
              |-- SDL2 bootstrap and CPython
-             |-- local PyDevices p4a recipes
+             |-- local OmniPython p4a recipes
              `-- TestPyPI and PyPI runtime wheels
                          |
                          v
@@ -30,7 +30,7 @@ p4a_app/main.py + buildozer.spec
 
 [`build_android.sh`](../../build_android.sh) creates a host virtual environment, prepares the Android
 SDK/NDK configuration, synchronizes the app utility files, and invokes
-Buildozer. The app's `requirements` list names PyDevices packages; the local
+Buildozer. The app's `requirements` list names OmniPython packages; the local
 recipes in [`p4a_recipes/`](../../p4a_recipes/) tell python-for-android how to install the matching
 wheels. TestPyPI is the primary runtime index and PyPI is a secondary index
 for dependencies unavailable there.
@@ -40,9 +40,9 @@ The resulting debug APK is placed under `p4a_app/bin/`. [Build an APK](../guides
 ## What is and isn't in the APK
 
 
-This template has no `boot.py` / stdio sidecar / attach REPL — that machinery belongs to the separate [android-runner](https://github.com/PyDevices/android-runner) repo, which builds a generic debuggable host APK (`org.pydevices.runner`) that `pydevices/bin/android.py` stages scripts onto. Here, [`p4a_app/main.py`](../../p4a_app/main.py) is p4a's normal SDL2 bootstrap entrypoint and needs no patching of `getEntryPoint`.
+This template has no `boot.py` / stdio sidecar / attach REPL — that machinery belongs to the separate [android-runner](https://github.com/PyDevices/android-runner) repo, which builds a generic debuggable host APK (`org.pydevices.runner`) that `omnipython/bin/android.py` stages scripts onto. Here, [`p4a_app/main.py`](../../p4a_app/main.py) is p4a's normal SDL2 bootstrap entrypoint and needs no patching of `getEntryPoint`.
 
-The `displaydev` module ships inside the **pydevices** distribution itself (there is no separate `pydevices-displaydev` package on TestPyPI); [`p4a_recipes/pydevices/`](../../p4a_recipes/pydevices/) pulls it in as part of `pydevices`.
+The `displaydev` module ships inside the **omnipython** distribution itself (there is no separate `omnipython-displaydev` package on TestPyPI); [`p4a_recipes/omnipython/`](../../p4a_recipes/omnipython/) pulls it in as part of `omnipython`.
 
 ## Important boundaries
 

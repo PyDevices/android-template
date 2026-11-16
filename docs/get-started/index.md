@@ -3,7 +3,7 @@
 You need a copy of the template, then the app in [`p4a_app/main.py`](../../p4a_app/main.py) and the
 settings in [`p4a_app/buildozer.spec`](../../p4a_app/buildozer.spec). If you only want to run a script on a
 phone or emulator, you don't need this repository: download `android.py` and
-follow [its guide](https://github.com/PyDevices/pydevices/blob/main/docs/guides/run-on-android.md#staging-a-script-with-androidpy).
+follow [its guide](https://github.com/PyDevices/omnipython/blob/main/docs/guides/run-on-android.md#staging-a-script-with-androidpy).
 
 ## Use the template
 
@@ -19,7 +19,7 @@ cd my-app
 ## Try it on your desktop
 
 Before a full Android build, draw the demo on your computer. The
-script makes a virtual environment, installs the PyDevices desktop packages
+script makes a virtual environment, installs the OmniPython desktop packages
 from TestPyPI and draws the demo once under Xvfb (a virtual display, so no window opens), then exits:
 
 ```bash
@@ -30,7 +30,7 @@ It needs `xvfb-run` (the `xvfb` package on Ubuntu).
 
 ## Make it yours
 
-1. Change `p4a_app/main.py` to your own PyDevices code.
+1. Change `p4a_app/main.py` to your own OmniPython code.
 2. Set `title`, `package.name` and `package.domain` in `p4a_app/buildozer.spec`.
    The template's id is `org.pydevices.myapp`; make yours unique before you
    give the APK to anyone.
