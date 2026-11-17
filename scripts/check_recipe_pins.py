@@ -2,11 +2,11 @@
 # SPDX-FileCopyrightText: 2026 Brad Barnett
 #
 # SPDX-License-Identifier: MIT
-"""Verify every pinned p4a_recipes/*/__init__.py version resolves on TestPyPI.
+"""Verify every pinned p4a_recipes/*/__init__.py version resolves on PyPI.
 
 This is the check that would have caught the pydevices==0.0.17 /
 omnipython-palettes==0.0.8 pin rot: both were repo-local floors that had
-drifted behind (or, for 0.0.17, never matched) any version TestPyPI ever
+drifted behind (or, for 0.0.17, never matched) any version the index ever
 published. Recipes with ``version = None`` (unpinned, resolved at build
 time) are skipped -- there is nothing to verify.
 """
@@ -53,7 +53,7 @@ def parse_recipe(init_py: Path):
 
 
 def check(pip_name: str, version: str) -> bool:
-    url = f"https://test.pypi.org/pypi/{pip_name}/json"
+    url = f"https://pypi.org/pypi/{pip_name}/json"
     try:
         with urllib.request.urlopen(url, timeout=20) as resp:
             data = json.load(resp)
@@ -67,7 +67,7 @@ def check(pip_name: str, version: str) -> bool:
         return True
 
     latest = data.get("info", {}).get("version", "?")
-    print(f"FAIL  {pip_name}=={version} not found on TestPyPI (latest: {latest})")
+    print(f"FAIL  {pip_name}=={version} not found on PyPI (latest: {latest})")
     return False
 
 

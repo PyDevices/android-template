@@ -21,7 +21,7 @@ trees before you copy.
 CI runs shellcheck on `build_android.sh` and `scripts/*.sh`, checks that
 [`p4a_app/buildozer.spec`](p4a_app/buildozer.spec) parses and has `title`, `package.name`,
 `package.domain` and `version`, and checks that every pin in `p4a_recipes/`
-resolves on TestPyPI. It doesn't build an APK. Run the same checks yourself:
+resolves on PyPI. It doesn't build an APK. Run the same checks yourself:
 
 ```bash
 shellcheck build_android.sh scripts/*.sh
@@ -37,7 +37,7 @@ A change to the packaging layer also needs a real build: see
 When you add a runtime dependency, add or update its recipe in `p4a_recipes/`
 and the `requirements` line in `p4a_app/buildozer.spec` together, then run
 `python3 scripts/check_recipe_pins.py`. The default build installs from
-TestPyPI; don't make `--local-modules` the normal path or commit the shadow
+PyPI; don't make `--local-modules` the normal path or commit the shadow
 copies it creates.
 
 ## Docs

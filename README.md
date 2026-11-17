@@ -26,7 +26,7 @@ Desktop smoke exited cleanly
 ```
 
 That makes a virtual environment, installs the OmniPython desktop packages from
-TestPyPI and draws `main.py`'s four colour bands once under Xvfb. The APK is one
+PyPI and draws `main.py`'s four colour bands once under Xvfb. The APK is one
 more command, which needs the Android SDK, NDK and a JDK:
 
 ```bash

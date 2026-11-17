@@ -22,7 +22,7 @@ p4a_app/main.py + buildozer.spec
              |
              |-- SDL2 bootstrap and CPython
              |-- local OmniPython p4a recipes
-             `-- TestPyPI and PyPI runtime wheels
+             `-- PyPI runtime wheels
                          |
                          v
                     debug APK
@@ -32,8 +32,7 @@ p4a_app/main.py + buildozer.spec
 SDK/NDK configuration, synchronizes the app utility files, and invokes
 Buildozer. The app's `requirements` list names OmniPython packages; the local
 recipes in [`p4a_recipes/`](../../p4a_recipes/) tell python-for-android how to install the matching
-wheels. TestPyPI is the primary runtime index and PyPI is a secondary index
-for dependencies unavailable there.
+wheels from PyPI, at the version each recipe pins.
 
 The resulting debug APK is placed under `p4a_app/bin/`. [Build an APK](../guides/build-an-apk.md) has the commands and prerequisites.
 
@@ -42,11 +41,11 @@ The resulting debug APK is placed under `p4a_app/bin/`. [Build an APK](../guides
 
 This template has no `boot.py` / stdio sidecar / attach REPL — that machinery belongs to the separate [android-runner](https://github.com/PyDevices/android-runner) repo, which builds a generic debuggable host APK (`org.pydevices.runner`) that `omnipython/bin/android.py` stages scripts onto. Here, [`p4a_app/main.py`](../../p4a_app/main.py) is p4a's normal SDL2 bootstrap entrypoint and needs no patching of `getEntryPoint`.
 
-The `displaydev` module ships inside the **omnipython** distribution itself (there is no separate `omnipython-displaydev` package on TestPyPI); [`p4a_recipes/omnipython/`](../../p4a_recipes/omnipython/) pulls it in as part of `omnipython`.
+The `displaydev` module ships inside the **omnipython** distribution itself (there is no separate `omnipython-displaydev` package on PyPI); [`p4a_recipes/omnipython/`](../../p4a_recipes/omnipython/) pulls it in as part of `omnipython`.
 
 ## Important boundaries
 
-The default build intentionally uses published TestPyPI packages. The
+The default build intentionally uses published PyPI packages. The
 `--local-modules` flag is for local debugging only: it copies selected sibling
 checkout modules into `p4a_app/`, shadowing their installed packages. Do not
 turn it into the normal build path or commit those generated shadows.
