@@ -20,7 +20,7 @@ cd my-app
 
 Before a full Android build, draw the demo on your computer. The
 script makes a virtual environment, installs the OmniPython desktop packages
-from TestPyPI and draws the demo once under Xvfb (a virtual display, so no window opens), then exits:
+from PyPI and draws the demo once under Xvfb (a virtual display, so no window opens), then exits:
 
 ```bash
 ./scripts/test_desktop.sh

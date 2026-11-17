@@ -5,7 +5,7 @@ name: Template check
 # for what that costs) which is too heavy for a check that runs on every
 # push/PR to this template. This workflow only checks the things that don't
 # need that toolchain: script syntax, buildozer.spec parses, and every
-# p4a_recipes pin actually resolves on TestPyPI (the check that would have
+# p4a_recipes pin actually resolves on PyPI (the check that would have
 # caught the pydevices==0.0.17 / omnipython-palettes==0.0.8 pin rot).
 
 # Documentation-only changes can't change this result, so they don't run it.
@@ -54,5 +54,5 @@ jobs:
           print('buildozer.spec OK:', dict(c['app']).get('package.name'))
           "
 
-      - name: Verify p4a_recipes pins resolve on TestPyPI
+      - name: Verify p4a_recipes pins resolve on PyPI
         run: python3 scripts/check_recipe_pins.py
