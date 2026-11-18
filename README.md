@@ -27,7 +27,10 @@ Desktop smoke exited cleanly
 
 That makes a virtual environment, installs the OmniPython desktop packages from
 PyPI and draws `main.py`'s four colour bands once under Xvfb. The APK is one
-more command, which needs the Android SDK, NDK and a JDK:
+more command, which needs the Android SDK, NDK and a JDK. It also takes
+`lib/omip.py` from an `omnipython` checkout beside this one, so clone
+[omnipython](https://github.com/PyDevices/omnipython) next to it first, or
+point `OMNIPYTHON_PRODUCT_ROOT` at a checkout:
 
 ```bash
 ./build_android.sh -y
